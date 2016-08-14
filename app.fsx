@@ -7,7 +7,8 @@ open System.IO
 open Suave
 open Suave.Web
 open Suave.Http
-open Suave.Types
+//Deprecated
+//open Suave.Types
 open FSharp.Data
 
 // ----------------------------------------------------------------------------
@@ -45,7 +46,10 @@ let getFeedNews () = async {
         yield "<li>"
         yield sprintf "<h3><a href=\"%s\">%s</a></h3>" item.Link item.Title
         yield sprintf "<p class=\"date\">%s</p>" (formatDate item.PubDate)
-        yield sprintf "<p>%s</p>" (formatText 500 (stripHtml (defaultArg item.Description "")))
+        //error FS0001: This expression was expected to have type string option
+        //yield sprintf "<p>%s</p>" (formatText 500 (stripHtml (defaultArg item.Description "")))
+        //Replaced by code found at https://github.com/tpetricek/suave-fshome/issues/1
+        yield sprintf "<p>%s</p>" (formatText 500 (stripHtml item.Description))
         yield "</li>" ]
   return String.concat "" html }
 
