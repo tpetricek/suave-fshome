@@ -49,7 +49,7 @@ let getFeedNews () = async {
         //error FS0001: This expression was expected to have type string option
         //yield sprintf "<p>%s</p>" (formatText 500 (stripHtml (defaultArg item.Description "")))
         //Replaced by code found at https://github.com/tpetricek/suave-fshome/issues/1
-        yield sprintf "<p>%s</p>" (formatText 500 (stripHtml (defaultArg (Some item.Description) "")))
+        yield sprintf "<p>%s</p>" (formatText 500 (stripHtml item.Description))
         yield "</li>" ]
   return String.concat "" html }
 
