@@ -61,12 +61,7 @@ let serverConfig =
   { defaultConfig with
       homeFolder = Some __SOURCE_DIRECTORY__
       logger = Logging.Loggers.saneDefaultsFor Logging.LogLevel.Debug
-     // Deprecated
-     //bindings = [ HttpBinding.mk' HTTP  "127.0.0.1" 8083] }
       bindings = [ HttpBinding.mkSimple HTTP  "127.0.0.1" 8083] }
-     // Soon will be also deprecated (yes again... :/) and you will have to replace by this one
-     // Source : https://github.com/SuaveIO/suave/commit/538a445524a208a6e2c9fa77647fc2ecc934aaea
-     //bindings = [ HttpBinding.createSimple HTTP  "127.0.0.1" 8083] }
 
 let reloadAppServer () =
   reloadScript() |> Option.iter (fun app -> 
